@@ -1,0 +1,6 @@
+Mỗi máy tính kết nối mạng thì sẽ có 1 cái host là địa chỉ IP
+Máy tính chạy nhiều sever mỗi cái sever phải trỏ 1 cổng riêng là port
+!DOCTYPE đánh dấu ngôn ngữ
+HTML có 2 phần là 
+head và body
+link dùng để thêm các kiểu chữ,.....
