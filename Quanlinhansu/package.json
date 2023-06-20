@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "fs-promise": "^2.0.3",
+    "prompt-sync": "^4.2.0"
+  }
+}
