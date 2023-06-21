@@ -108,12 +108,14 @@ function updateEmployee() {
         employeeSex: employeeSexNew,
         joinAt: new Date(),
       };
-      fs.writeFileSync("dulieu/nhansu.json", JSON.stringify(employeeDataNew), {
+      dataWarehouse.push(employeeDataNew);
+      fs.writeFileSync("dulieu/nhansu.json", JSON.stringify(dataWarehouse), {
         encoding: "utf-8",
       });
       console.log("Sửa thành công.");
     }
   }
+  printMenu();
 }
 
 function printMenu() {
