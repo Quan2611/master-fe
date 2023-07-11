@@ -1,0 +1,1 @@
+const a = _param1 => _param1.toLowerCase(); // nếu không có {} thì sẽ là return 
