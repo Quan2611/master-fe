@@ -1,9 +1,7 @@
-const a = _param1 => _param1.toLowerCase(); // nếu không có {} thì sẽ là return 
-
-// function a(_param1) {
-//   return _param1.toLowerCase()
+// function run(params) {
+//   const { firstName, lastName } = params
+//   console.log(firstName, lastName);
 // }
-
 
 // var person = {
 //   firstName: 'Huy',
@@ -17,4 +15,10 @@ const a = _param1 => _param1.toLowerCase(); // nếu không có {} thì sẽ là
 //   }
 // }
 
-// person.showName()
+// run(person)
+
+// function run([a, b]) {
+//   console.log(a, b);
+// }
+
+// run(['name', 'age'])
