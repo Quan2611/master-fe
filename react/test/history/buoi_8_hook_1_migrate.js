@@ -1,34 +1,3 @@
-// import React from "react";
-// import "./App.css";
-
-// class Accordion extends React.Component {
-//   render() {
-//     const { heading, children } = this.props;
-
-//     return (
-//       <div className="accordion">
-//         <h1>{heading}</h1>
-
-//         <div className="content">{children}</div>
-//       </div>
-//     );
-//   }
-// }
-
-// class App extends React.Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <Accordion heading="This is heading">
-//           <div>"This is content"</div>
-//         </Accordion>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
 import React, { useState } from "react";
 import "./App.css";
 import classNames from "classnames";
@@ -36,11 +5,10 @@ import classNames from "classnames";
 class TodoItem extends React.Component {
   render() {
     const { item } = this.props;
+
     return (
       <div
-        onClick={() => {
-          this.props.onItemClick(item)
-          console.log("ấn nè");}}
+        onClick={() => this.props.onItemClick(item)}
         className={classNames("todo-item", {
           done: item.isDone,
         })}
@@ -73,14 +41,12 @@ function App() {
   )
     
   const onItemClick = (item) => {
-    console.log(item);
     const _todoItemIndex = todoItems.findIndex(
       (_item) => _item.id === item.id
     );
     const _todoItems = todoItems;
     _todoItems[_todoItemIndex].isDone = !_todoItems[_todoItemIndex].isDone;
   
-    console.log(_todoItems);
     setTodoItems(_todoItems);
   }
   
@@ -90,14 +56,14 @@ function App() {
   
   const onAddNewTodoItem = (event) => {
     if (event.keyCode === 13) {
-      setTodoItems((prev) => ([
+      setTodoItems([
           {
             id: todoItems.length + 1,
             title: newTodoItem,
             isDone: false,
           },
-          ...prev
-        ]))
+          ...todoItems
+        ])
         setNewTodoItem("")
     }
   }
