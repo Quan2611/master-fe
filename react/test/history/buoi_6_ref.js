@@ -1,34 +1,3 @@
-// import React from "react";
-// import "./App.css";
-
-// class Accordion extends React.Component {
-//   render() {
-//     const { heading, children } = this.props;
-
-//     return (
-//       <div className="accordion">
-//         <h1>{heading}</h1>
-
-//         <div className="content">{children}</div>
-//       </div>
-//     );
-//   }
-// }
-
-// class App extends React.Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <Accordion heading="This is heading">
-//           <div>"This is content"</div>
-//         </Accordion>
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
 //reference như kiểu là con trỏ trỏ thẳng đến 1 thẻ nào đó, nó có thể
 //xử lí thay vì state gần tương tự event.target trong html event
 //trong ref luôn có 1 cái properties là current là cái hiện tại nó đang
