@@ -20,6 +20,7 @@ class TodoItem extends React.Component {
 }
 
 function App() {
+  const [doneTodoItem,setDoneTodoItem] = useState(fasle)
   const [newTodoItem,setNewTodoItem] = useState("")
   const [todoItems,setTodoItems] = useState([
      {

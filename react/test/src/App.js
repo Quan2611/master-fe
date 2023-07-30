@@ -36,11 +36,10 @@ import classNames from "classnames";
 class TodoItem extends React.Component {
   render() {
     const { item } = this.props;
+
     return (
       <div
-        onClick={() => {
-          this.props.onItemClick(item)
-          console.log("ấn nè");}}
+        onClick={() => this.props.onItemClick(item)}
         className={classNames("todo-item", {
           done: item.isDone,
         })}
@@ -52,6 +51,7 @@ class TodoItem extends React.Component {
 }
 
 function App() {
+  const [done,setDone] = useState(false)
   const [newTodoItem,setNewTodoItem] = useState("")
   const [todoItems,setTodoItems] = useState([
      {
@@ -73,14 +73,12 @@ function App() {
   )
     
   const onItemClick = (item) => {
-    console.log(item);
+    setDone(!done); 
     const _todoItemIndex = todoItems.findIndex(
       (_item) => _item.id === item.id
     );
     const _todoItems = todoItems;
     _todoItems[_todoItemIndex].isDone = !_todoItems[_todoItemIndex].isDone;
-  
-    console.log(_todoItems);
     setTodoItems(_todoItems);
   }
   
@@ -90,14 +88,14 @@ function App() {
   
   const onAddNewTodoItem = (event) => {
     if (event.keyCode === 13) {
-      setTodoItems((prev) => ([
+      setTodoItems([
           {
             id: todoItems.length + 1,
             title: newTodoItem,
             isDone: false,
           },
-          ...prev
-        ]))
+          ...todoItems
+        ])
         setNewTodoItem("")
     }
   }
@@ -122,4 +120,4 @@ function App() {
     )
 }
 
-export default App; 
+export default App;
