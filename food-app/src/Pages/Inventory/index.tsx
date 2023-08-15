@@ -1,4 +1,3 @@
-import React from "react";
 import { Avatar, Rate, Space, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getInventory } from "../../API";

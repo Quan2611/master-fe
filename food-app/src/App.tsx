@@ -1,29 +1,37 @@
-import {RouterProvider, createBrowserRouter} from 'react-router-dom'
-import Layout from './Component/Layout';
-import './App.css';
-import { ConfigProvider} from 'antd'
-import BookTable from './Pages/BookTable';
-// import Login from './Pages/';
-import Authentication from './Pages/Authentication'
-import React from 'react';
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Layout from "./Component/Layout"
+import { ConfigProvider } from "antd";
+import "./App.css";
+import "antd/dist/reset.css"
 
-const router = createBrowserRouter ([
+import BookTable from './Pages/BookTable'
+import Dashboard from './Pages/Dashboard'
+import Inventory from './Pages/Inventory'
+import Orders from './Pages/Orders'
+import Customers from './Pages/Customers'
+import Authentication from './Pages/Authentication'
+
+const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
     children: [
       {
-        path: "/authentication",
-        element: <Authentication />
+        path: "/",
+        element: <Dashboard />,
       },
       {
-        path: "/book-table",
-        element: <BookTable />
+        path: "/inventory",
+        element: <Inventory />,
       },
-      // {
-      //   path: "/login",
-      //   element: <Login />
-      // },
+      {
+        path: "/orders",
+        element: <Orders />,
+      },
+      {
+        path: "/customers",
+        element: <Customers />,
+      },
     ]
   },
   {
@@ -33,27 +41,22 @@ const router = createBrowserRouter ([
   {
     path: "/book-table",
     element: <BookTable />
-  },
-  // {
-  //   path: "/login",
-  //   element: <Login />
-  // },
-])
+  }
+]);
 
 function App() {
-  return(
+  return (
     <div className="dark container">
       <ConfigProvider 
-      theme={{
-        token:{
-          colorPrimary: '#EA7C69',
-        }
-      }}
+        theme={{
+          token: {
+            colorPrimary: "#EA7C69"
+          }
+        }}
       >
-        <RouterProvider router = {router}/>
+        <RouterProvider router={router}/>
       </ConfigProvider>
     </div>
-  )
+  );
 }
-
 export default App;

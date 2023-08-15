@@ -7,7 +7,6 @@ import {
 import { Card, Space, Statistic, Table, Typography } from "antd";
 import { useEffect, useState } from "react";
 import { getCustomers, getInventory, getOrders, getRevenue } from "../../API";
-import React from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
