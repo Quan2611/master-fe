@@ -1,0 +1,71 @@
+body .dark {
+  --primary-color: #ea7c69;
+  --secondary-color: #9288e0;
+  --white-color: #ffffff;
+  --text-dark: #3b5162;
+  --text-gray: #889898;
+  --text-light: #abbbc2;
+  --text-lighter: #e0e6e9;
+  --bg: #fafafa;
+  --bg-line: #393c49;
+  --bg-dark-1: #252836;
+  --bg-dark-2: #1f1d2b;
+  --bg-form: #2d303e;
+  --green-color: #50d1aa;
+  --red-color: #ff7ca3;
+  --orange-color: #ffb572;
+  --blue-color: #65b0f6;
+  --purple-color: #9290fe;
+}
+
+body .container {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: var(--bg-dark-1);
+}
+
+.title-color {
+  color: var(--white-color) !important;
+}
+
+.sub-title-color {
+  color: var(--text-light);
+}
+
+svg {
+  fill: var(--primary-color);
+}
+
+.btn-submit {
+  background-color: var(--primary-color);
+}
+
+/* ANT SELECT */
+.ant-select-selector {
+  background-color: var(--bg-form) !important;
+  color: var(--white-color) !important;
+}
+
+.ant-select-selection-placeholder {
+  color: var(--text-gray) !important;
+}
+
+.ant-select-selection-search-input {
+  color: var(--white-color);
+}
+.ant-select-selection-item {
+  color: var(--white-color) !important;
+}
+
+.ant-select-dropdown {
+  background-color: #2d303e !important;
+}
+
+.ant-select-dropdown * {
+  color: #ffffff !important;
+}
+
+.ant-select-item.ant-select-item-option.ant-select-item-option-selected {
+  background-color: #ea7c69;
+}
+/* ANT SELECT */
