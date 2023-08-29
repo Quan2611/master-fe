@@ -13,6 +13,7 @@ import Login from "./Pages/Login";
 import {STORAGE_KEY as ADMIN_STORAGE_KEY} from "../src/redux/adminSlice"
 import { STORAGE_ACCESS_TOKEN_KEY } from "./ultils/constants";
 import Lodash from "lodash"
+import Management from "./Pages/Management";
 
 const router = createBrowserRouter([
   {
@@ -52,7 +53,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/management",
-        element: <Dashboard />,
+        element: <Management />,
       },
       {
         path: "/management/statistic",
