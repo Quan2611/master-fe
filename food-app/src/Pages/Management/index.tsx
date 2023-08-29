@@ -15,19 +15,19 @@ const food: IFood[] = [
   },
   {
     id: 2,
-    name: "Spicy seasoned seafood noodles",
-    price: 2.29,
-    quantity: 20,
-    image: "/assets/SpicySeasonadSeafoodNoddle.svg",
+    name: "Salted Pasta with mushroom sauce",
+    price: 2.69,
+    quantity: 30,
+    image: "/assets/SaltedPasta.svg",
     discount_amount: 0,
     tag: "Hot Dish"
   },
   {
     id: 3,
-    name: "Spicy seasoned seafood noodles",
-    price: 2.29,
-    quantity: 20,
-    image: "/assets/SpicySeasonadSeafoodNoddle.svg",
+    name: "Beef dumpling in hot and sour soup",
+    price: 2.99,
+    quantity: 16,
+    image: "/assets/SaltedPasta.svg",
     discount_amount: 0,
     tag: "Hot Dish"
   },
@@ -62,7 +62,7 @@ function Management() {
           Create new dish
         </Button>
       </div>
-      
+
       <br/>
       <List
       grid={{
