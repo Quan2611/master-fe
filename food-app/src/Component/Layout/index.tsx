@@ -1,17 +1,13 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import AppFooter from "../AppFooter";
 import AppHeader from "../AppHeader";
 import SideMenu from "../SlideMenu";
 import React, { useState } from 'react';
 import {
-  DesktopOutlined,
-  FileOutlined,
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
   SettingOutlined,
-  TeamOutlined,
-  UserOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Breadcrumb, Button, Layout, Menu, theme } from 'antd';
@@ -20,24 +16,7 @@ const { Header, Content, Footer, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[],
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
 
-const adminItems: MenuItem[] = [
-  getItem('Setting', '1', <SettingOutlined />),
-  getItem('Statistic', '2', <PieChartOutlined />),
-];
 
 function CommonLayout() {
   const [collapsed, setCollapsed] = useState(false);
@@ -45,6 +24,31 @@ function CommonLayout() {
     token: { colorBgContainer },
   } = theme.useToken();
 
+  const navigate = useNavigate();
+  function getItem(
+    label: React.ReactNode,
+    key: React.Key,
+    icon?: React.ReactNode,
+    path?:string,
+    children?: MenuItem[],
+  ): MenuItem {
+    return {
+      key,
+      icon,
+      children,
+      label,
+      onClick: () =>{
+        if(path){
+          navigate(path)
+        }
+      }
+    } as MenuItem;
+  }
+  
+  const adminItems: MenuItem[] = [
+    getItem('Setting', '1', <SettingOutlined />, '/management'),
+    getItem('Statistic', '2', <PieChartOutlined />, '/management/statistic'),
+  ];
   return (
     <Layout style={{ minHeight: '100vh', maxWidth:'100vw' }}>
       <Sider 
@@ -94,7 +98,10 @@ function CommonLayout() {
                   height: 64,
                 }}
               />
-              {window.location.pathname.replace(/[-,/]/g, ' ')}
+              {(()=>{
+                const paths = window.location.pathname.split('/')
+                return paths[paths.length - 1]
+              })()}
              </>
             ) : (
               <>

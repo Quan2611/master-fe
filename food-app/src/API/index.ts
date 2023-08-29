@@ -1,7 +1,9 @@
+import { STORAGE_ACCESS_TOKEN_KEY } from './../ultils/constants';
 import { ITable } from "../../type";
 import Request, { IRequest } from "./request";
 import { message } from "antd";
 import { IAdmin } from "../../type";
+import { generateJWT } from "./jwt";
 
 
 export const getTable = async (inUsed?: boolean): Promise<ITable[]> => {
@@ -36,13 +38,16 @@ export const login = async (email: string, password: string): Promise<IAdmin | n
   const resp = await Request.send(payload)
 
   if (resp.status === 200 && resp.data?.length > 0) {
-    return {
+    const data = {
       email: resp.data[0].email,
-      full_name: resp.data[0].full_name
-    } as IAdmin
+      full_name: resp.data[0].full_name,
+    } as IAdmin;
+    const token = await generateJWT(data);
+    window.localStorage.setItem(STORAGE_ACCESS_TOKEN_KEY, token);
+    return data;
   } else {
-    message.warning("Invalid credential!")
-    return null
+    message.warning("Invalid credential!");
+    return null;
   }
 }  
 

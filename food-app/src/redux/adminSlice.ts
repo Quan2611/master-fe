@@ -9,7 +9,7 @@ export const handleLogin = (email: string, password: string) => async (dispatch:
   }
 }
 
-const STORAGE_KEY ='admin_reducer'
+export const STORAGE_KEY ='admin_reducer'
 const storageData = JSON.parse(window.localStorage.getItem("STORAGE_KEY") || "{}")
 const _saveData = (data: object) => {
   window.localStorage.setItem(STORAGE_KEY, JSON.stringify(data))
