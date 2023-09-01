@@ -1,6 +1,6 @@
 import { RouterProvider, createBrowserRouter, redirect } from "react-router-dom";
 import Layout from "../src/Component/Layout";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, theme } from "antd";
 import "./App.css";
 import "antd/dist/reset.css";
 import BookTable from "./Pages/BookTable";
@@ -79,6 +79,7 @@ function App() {
     <div className="dark container">
       <ConfigProvider
         theme={{
+          algorithm: theme.darkAlgorithm,
           token: {
             colorPrimary: "#EA7C69",
             colorBgContainer: "#1f1d2b",

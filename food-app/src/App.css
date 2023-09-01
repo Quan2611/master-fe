@@ -19,7 +19,7 @@ body .dark {
 }
 
 body .container {
-  min-width: 100vw;
+  max-width: 100vw;
   min-height: 100vh;
   background-color: var(--bg-dark-1);
 }
@@ -94,3 +94,23 @@ svg {
 .ant-menu-item-selected svg {
   fill: var(--white-color) !important;
 }
+
+/* ANT MENU */
+
+/*ANT DRAWER*/
+.ant-drawer-content{
+  background-color: var(--bg-dark-2,#1f1d2b)!important;
+}
+/*ANT DRAWER*/
+
+/*ANT BTN */
+.ant-btn{
+  display:flex;
+  justify-content: center;
+  align-items: center
+}
+
+[type='reset'], [type='submit']{
+  background-color: var(--primary-color,#ea7c69) !important;
+}
+/*ANT BTN */

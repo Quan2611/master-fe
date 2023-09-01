@@ -2,6 +2,8 @@ import { Button, List } from 'antd'
 import { IFood } from '../../../type'
 import FoodItem from '../../Component/FoodItem'
 import { PlusCircleOutlined } from '@ant-design/icons'
+import { useState } from 'react';
+import FoodForm from '../../Component/FoodForm';
 
 const food: IFood[] = [
   {
@@ -50,7 +52,19 @@ const food: IFood[] = [
     tag: "Hot Dish"
   },
 ]
+
+
 function Management() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<number|null> (null)
+  const onClose = () => {
+    setIsOpen(false);
+    setSelectedItem !== null && setSelectedItem(null);
+  } 
+
+  const onSubmit = () => {
+    setIsOpen(false);
+  }
   return (
     <main>
       <div>
@@ -58,6 +72,7 @@ function Management() {
         className='add-btn'
         icon ={<PlusCircleOutlined />}
         size="large"
+        onClick={() =>setIsOpen(true)}
         >
           Create new dish
         </Button>
@@ -77,9 +92,22 @@ function Management() {
       dataSource={food}
       renderItem={(item) => (
         <List.Item>
-          <FoodItem data= {item}/>
+          <FoodItem
+          onClick={(id:number) =>{
+            setSelectedItem(id);
+            setIsOpen(true)
+          }} 
+          data= {item}
+          />
         </List.Item>
       )}
+    />
+
+    <FoodForm
+    isOpen={isOpen}
+    onClose={onClose}
+    onSubmit={onSubmit}
+    selectedItem={selectedItem}
     />
     </main>
   )
