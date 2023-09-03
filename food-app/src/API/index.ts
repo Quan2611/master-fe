@@ -1,5 +1,5 @@
 import { STORAGE_ACCESS_TOKEN_KEY } from './../ultils/constants';
-import { ITable } from "../../type";
+import { IFood, INewFood, ITable } from "../../type";
 import Request, { IRequest } from "./request";
 import { message } from "antd";
 import { IAdmin } from "../../type";
@@ -50,6 +50,55 @@ export const login = async (email: string, password: string): Promise<IAdmin | n
     return null;
   }
 }  
+
+export const createNewFood = async (data: INewFood): Promise<IFood | null> => {
+  const payload: IRequest = {
+    method: "POST",
+    path: "food",
+    data: data
+  };
+
+  const resp = await Request.send(payload);
+  if (resp.status === 201) {
+    return resp.data as IFood;
+  } else {
+    message.error("Create food failed!")
+    return null;
+  }
+};
+
+export const getDetailInfoFoodById = async (id?: number): Promise<IFood[] | null> => {
+  const payload: IRequest = {
+    method: "GET",
+    path: "food",
+    query: {
+      id: id,
+    }
+  }
+
+  const resp = await Request.send(payload)
+  if (resp.status === 200) {
+    return resp.data as IFood[]
+  } else {
+    return null
+  }
+}
+
+export const updateInfoFoodById = async (data: IFood): Promise<IFood | null> => {
+  const payload: IRequest = {
+    method: "PATCH",
+    path: `food/${data.id}`,
+    data: data
+  };
+
+  const resp = await Request.send(payload);
+  if (resp.status === 200) {
+    return resp.data as IFood;
+  } else {
+    message.error("Update food failed!")
+    return null;
+  }
+};
 
 
 
