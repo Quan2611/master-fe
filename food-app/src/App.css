@@ -104,13 +104,8 @@ svg {
 /*ANT DRAWER*/
 
 /*ANT BTN */
-.ant-btn{
-  display:flex;
-  justify-content: center;
-  align-items: center
-}
-
 [type='reset'], [type='submit']{
   background-color: var(--primary-color,#ea7c69) !important;
 }
 /*ANT BTN */
+
