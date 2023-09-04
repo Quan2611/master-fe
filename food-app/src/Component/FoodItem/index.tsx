@@ -4,7 +4,7 @@ import "./foodStyle.scss"
 import { EditOutlined } from "@ant-design/icons"
 interface IProps{
   data :IFood
-  onClick :(id:number)=>void 
+  onClick?:(id:number)=>void 
 }
 function FoodItem({data, onClick}: IProps) {
   return (
@@ -19,13 +19,18 @@ function FoodItem({data, onClick}: IProps) {
         </div>
       </Card>
       
-      <Button
-      icon={<EditOutlined />} 
-      size="large"
-      className="edit-btn"
-      onClick={()=>onClick(data.id)}>
-        Edit dish
-      </Button>
+      {
+        onClick && (
+          <Button 
+            icon={<EditOutlined />} 
+            size="large" 
+            className="edit-btn"
+            onClick={() => onClick(data.id)}
+          >
+            Edit dish
+          </Button>
+        )
+      }
     </div>
   )
 }

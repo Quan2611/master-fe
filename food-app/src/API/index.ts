@@ -1,5 +1,5 @@
 import { LIMIT_DISPLAY_ITEM_PER_PAGE, STORAGE_ACCESS_TOKEN_KEY } from './../ultils/constants';
-import { IFood, IGetFoodResponse, INewFood, ITable } from "../../type";
+import { IFood, IGetFoodRequest, IGetFoodResponse, INewFood, ITable } from "../../type";
 import Request, { IRequest } from "./request";
 import { message } from "antd";
 import { IAdmin } from "../../type";
@@ -102,13 +102,18 @@ export const updateInfoFoodById = async (data: IFood): Promise<IFood | null> => 
 
 
 
-export const getFood = async (skip: number = 0, limit: number = LIMIT_DISPLAY_ITEM_PER_PAGE): Promise<IGetFoodResponse> => {
+export const getFood = async ({
+  tag = "Hot Dish",
+  skip = 0,
+  limit = LIMIT_DISPLAY_ITEM_PER_PAGE,
+}: IGetFoodRequest): Promise<IGetFoodResponse> => {
   const payload: IRequest = {
     method: "GET",
     path: `food`,
     query: {
       "_start": skip,
-      "_limit": limit 
+      "_limit": limit,
+      "tag":tag
     }
   };
 
