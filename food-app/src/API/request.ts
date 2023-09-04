@@ -25,6 +25,7 @@ export interface IRequest {
 export interface IResponse {
   data: any;
   status: number;
+  total?:number;
 }
 
 async function send({

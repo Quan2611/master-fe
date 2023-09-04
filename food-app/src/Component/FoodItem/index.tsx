@@ -13,7 +13,7 @@ function FoodItem({data, onClick}: IProps) {
         <img src={data.image} alt = {data.name}/>
         <div className="food-name">{data.name}</div>
         <div className="food-infor">
-          <span>$ {data.price - data.discount_amount}</span>
+          <span>$ {(data.price - data.discount_amount).toLocaleString()}</span>
           <img src="/assets/ellipse.svg" alt ="ellipse" />
           <span>$ {data.quantity} Bowls</span>
         </div>

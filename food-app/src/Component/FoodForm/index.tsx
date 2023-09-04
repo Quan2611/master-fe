@@ -1,6 +1,6 @@
 import './foodFormStyle.scss'
 import {useCallback,useEffect} from "react"
-import { Button, DatePicker, Drawer, Form, Input,Select} from 'antd';
+import { Button, Drawer, Form, FormInstance, Input,Select} from 'antd';
 import { CATEGORY_LiST as listCategory } from '../../ultils/constants';
 import { getDetailInfoFoodById } from '../../API';
 import { INewFood } from '../../../type';
@@ -11,10 +11,10 @@ interface IProps {
   onClose : () => void;
   onSubmit : (data:INewFood) => void;
   selectedItem : number | null
+  form: FormInstance
 }
-function FoodForm({isOpen, onClose, onSubmit,selectedItem} : IProps) {
+function FoodForm({isOpen, onClose, onSubmit,selectedItem,form} : IProps) {
 
-  const [form] = Form.useForm()
 
   const onInitInfoUpdateFood = useCallback(() => {
     if (selectedItem && form) {
@@ -40,7 +40,20 @@ function FoodForm({isOpen, onClose, onSubmit,selectedItem} : IProps) {
         bodyStyle={{ paddingBottom: 80 }}
         closeIcon={null}
       >
-        <Form layout="vertical" onFinish={onSubmit}>
+        <Form 
+        layout="vertical" 
+        onFinish={onSubmit} 
+        form={form}>
+
+          <Form.Item
+          name="id"
+          hidden
+          >
+            <Input
+              hidden
+            />
+          </Form.Item>
+
           <Form.Item
                 name="name"
                 label="Name"
@@ -69,11 +82,11 @@ function FoodForm({isOpen, onClose, onSubmit,selectedItem} : IProps) {
                     { required: true, message: 'Please enter food price' },
                     { min: 0 , message:'Invalid food price'},
                     {
-                      validator: (_, value, cb) => {
+                      validator: (_, value) => {
                         if (isNaN(value)) {
-                          cb("Invalid food price")
+                          return Promise.reject("Invalid food price")
                         } else {
-                          cb()
+                          return Promise.resolve()
                         }
                       }
                     }
@@ -84,7 +97,6 @@ function FoodForm({isOpen, onClose, onSubmit,selectedItem} : IProps) {
                 style={{ width: '100%' }}
                 size='large'
                 addonBefore="$"
-                type='number'
                 min={0}
             />
                
@@ -117,14 +129,14 @@ function FoodForm({isOpen, onClose, onSubmit,selectedItem} : IProps) {
                 { required: true, message: 'Please enter discount amount' },
                 { min: 0 , message:'Invalid amount'},
                 {
-                  validator: (_, value, cb) => {
+                  validator: (_, value) => {
                     const formPrice = form.getFieldValue("price")
                     if (isNaN(value)) {
-                      cb("Invalid amount")
+                      return Promise.reject("Invalid amount")
                     } else if (Number(formPrice) <= Number(value)) {
-                      cb("Discount amount must be smaller than price")
+                      return Promise.reject("Discount amount must be smaller than price")
                     } else {
-                      cb()
+                      return Promise.resolve()
                     }
                   }
                 }
@@ -135,7 +147,6 @@ function FoodForm({isOpen, onClose, onSubmit,selectedItem} : IProps) {
               style={{ width: '100%' }}
               size='large'
               addonBefore="$"
-              type='number'
               min={0}
             />
           </Form.Item>

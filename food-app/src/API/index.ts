@@ -1,5 +1,5 @@
-import { STORAGE_ACCESS_TOKEN_KEY } from './../ultils/constants';
-import { IFood, INewFood, ITable } from "../../type";
+import { LIMIT_DISPLAY_ITEM_PER_PAGE, STORAGE_ACCESS_TOKEN_KEY } from './../ultils/constants';
+import { IFood, IGetFoodResponse, INewFood, ITable } from "../../type";
 import Request, { IRequest } from "./request";
 import { message } from "antd";
 import { IAdmin } from "../../type";
@@ -78,7 +78,7 @@ export const getDetailInfoFoodById = async (id?: number): Promise<IFood[] | null
 
   const resp = await Request.send(payload)
   if (resp.status === 200) {
-    return resp.data as IFood[]
+    return resp.data[0] as IFood[]
   } else {
     return null
   }
@@ -99,6 +99,32 @@ export const updateInfoFoodById = async (data: IFood): Promise<IFood | null> => 
     return null;
   }
 };
+
+
+
+export const getFood = async (skip: number = 0, limit: number = LIMIT_DISPLAY_ITEM_PER_PAGE): Promise<IGetFoodResponse> => {
+  const payload: IRequest = {
+    method: "GET",
+    path: `food`,
+    query: {
+      "_start": skip,
+      "_limit": limit 
+    }
+  };
+
+  const resp = await Request.send(payload);
+  if (resp.status === 200) {
+    return {
+      data: resp.data as IFood[],
+      total: resp.total as number
+    };
+  } else {
+    return {
+      data: [],
+      total: 0
+    };
+  }
+}
 
 
 
