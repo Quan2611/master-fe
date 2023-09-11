@@ -33,7 +33,7 @@ body .container {
 }
 
 svg {
-  fill: var(--primary-color);
+  fill: var(--primary-color, #ea7c69);
 }
 
 .btn-submit {
@@ -104,8 +104,13 @@ svg {
 /*ANT DRAWER*/
 
 /*ANT BTN */
-[type='reset'], [type='submit']{
-  background-color: var(--primary-color,#ea7c69) !important;
+[type='reset'],
+[type='submit'], .ant-btn-primary {
+  background-color: var(--primary-color, #ea7c69) !important;
 }
 /*ANT BTN */
+
+.ant-btn .anticon svg {
+  margin-top: -6px !important;
+}
 
