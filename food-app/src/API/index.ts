@@ -1,5 +1,5 @@
 import { LIMIT_DISPLAY_ITEM_PER_PAGE, STORAGE_ACCESS_TOKEN_KEY } from './../ultils/constants';
-import { IFood, IGetFoodRequest, IGetFoodResponse, INewFood, ITable } from "../../type";
+import { IFood, IGetFoodRequest, IGetFoodResponse, INewFood, INewOrder, INewOrderItem, IOrder, ITable } from "../../type";
 import Request, { IRequest } from "./request";
 import { message } from "antd";
 import { IAdmin } from "../../type";
@@ -128,6 +128,38 @@ export const getFood = async ({
       data: [],
       total: 0
     };
+  }
+}
+
+export const createOrder = async (data: INewOrder): Promise<IOrder | undefined> => {
+  const payload: IRequest = {
+    method: "POST",
+    path: "order",
+    data: data
+  };
+
+  const resp = await Request.send(payload);
+  if (resp.status === 201) {
+    return resp.data;
+  } else {
+    message.error("Payment failed!")
+    return undefined;
+  }
+}
+
+export const createOrderItem = async (data: INewOrderItem[]): Promise<boolean> => {
+  const payload: IRequest = {
+    method: "POST",
+    path: "order_item",
+    data: data
+  };
+
+  const resp = await Request.send(payload);
+  if (resp.status === 201) {
+    return true;
+  } else {
+    message.error("Payment failed!")
+    return false;
   }
 }
 

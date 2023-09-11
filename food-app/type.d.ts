@@ -38,6 +38,8 @@ export interface IOrder {
   table_id: number;
 }
 
+export type INewOrder = Omit<IOrder, 'id'>;
+
 export interface IOrderItem {
   id: number;
   quantity: number;
@@ -48,6 +50,8 @@ export interface IOrderItem {
   total: number;
   note:string;
 }
+
+export type INewOrderItem = Omit<IOrderItem, 'id'>;
 
 export interface ITable {
   id: number;
