@@ -50,10 +50,11 @@ function Management() {
       <br/>
 
       <FoodList 
-          onEdit={(id: number) => {
+          onClick={(id: number) => {
           setSelectedItem(id)
           setIsOpen(true)
         }}
+        type="create/edit"
       />
 
       <FoodForm

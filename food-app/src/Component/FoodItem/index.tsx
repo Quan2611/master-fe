@@ -1,16 +1,23 @@
 import { Button, Card } from "antd"
 import { IFood } from "../../../type"
 import "./foodStyle.scss"
-import { EditOutlined } from "@ant-design/icons"
+import { EditOutlined, PlusOutlined } from "@ant-design/icons"
 interface IProps{
   data :IFood
-  onClick?:(id:number)=>void 
+  onClick: (id: number) => void
+  type: "view" | "create/edit"
 }
-function FoodItem({data, onClick}: IProps) {
+function FoodItem({data, onClick,type}: IProps) {
   return (
     <div className="food-item">
       <Card bordered={false}>
-        <img src={data.image} alt = {data.name}/>
+      <img 
+          src={data.image} 
+          alt={data.name} 
+          onError={(e) => {
+            (e.target as HTMLImageElement).src = "/assets/SpicySeasonadSeafoodNoddle.svg"
+          }}
+        />
         <div className="food-name">{data.name}</div>
         <div className="food-infor">
           <span>$ {(data.price - data.discount_amount).toLocaleString()}</span>
@@ -22,12 +29,14 @@ function FoodItem({data, onClick}: IProps) {
       {
         onClick && (
           <Button 
-            icon={<EditOutlined />} 
+          icon={type === 'view' ? <PlusOutlined /> :<EditOutlined />}
             size="large" 
             className="edit-btn"
             onClick={() => onClick(data.id)}
           >
-            Edit dish
+            {
+              type === 'view' ? 'Add to order' : 'Edit dish'
+            }
           </Button>
         )
       }

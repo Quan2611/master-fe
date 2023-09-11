@@ -6,10 +6,11 @@ import { CATEGORY_LiST, LIMIT_DISPLAY_ITEM_PER_PAGE } from "../../ultils/constan
 import FoodItem from "../FoodItem"
 
 interface IProps {
-  onEdit?: (id: number) => void
+  onClick: (id: number) => void
+  type: "view" | "create/edit"
 }
 
-function FoodList({onEdit}:IProps) {
+function FoodList({onClick,type}:IProps) {
 
   const [foodData, setFoodData] = useState<IFood[]>([])
   const [total, setTotal] = useState(0)
@@ -65,8 +66,9 @@ function FoodList({onEdit}:IProps) {
       renderItem={(item) => (
         <List.Item>
           <FoodItem
-           onClick={onEdit}
+           onClick={onClick}
            data={item}
+           type={type}
           />
         </List.Item>
       )}

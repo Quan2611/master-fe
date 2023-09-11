@@ -1,18 +1,17 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import AppFooter from "../AppFooter";
-import AppHeader from "../AppHeader";
-import SideMenu from "../SlideMenu";
 import React, { useState } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   PieChartOutlined,
+  SearchOutlined,
   SettingOutlined,
 } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Breadcrumb, Button, Layout, Menu, theme } from 'antd';
+import { Button, Input, Layout, Menu, theme } from 'antd';
+import moment from "moment";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -51,25 +50,35 @@ function CommonLayout() {
   ];
   return (
     <Layout style={{ minHeight: '100vh', maxWidth:'100vw' }}>
-      <Sider 
-      collapsible 
-      collapsed={collapsed} 
-      onCollapse={(value) => setCollapsed(value)}
-      >
-        <div style={{
-          paddingLeft: collapsed ? '8px' : "24px", 
-          margin:"4px"
+      {window.location.href.includes("management") && (
+        <Sider
+          collapsible
+          collapsed={collapsed}
+          onCollapse={(value) => setCollapsed(value)}
+          style={{
+            backgroundColor: colorBgContainer,
           }}
+          trigger={null}
+        >
+          <div
+            style={{
+              paddingLeft: collapsed ? "8px" : "24px",
+              margin: "4px",
+            }}
           >
-          <img src="/assets/Logo.svg" alt="logo" />
-        </div>
-        <Menu 
-        theme="dark" 
-        defaultSelectedKeys={['1']} 
-        mode="inline" 
-        items={adminItems} 
-        />
-      </Sider>
+            <img src="/assets/logo.svg" alt="logo" />
+          </div>
+          <Menu
+            theme="dark"
+            defaultSelectedKeys={["1"]}
+            mode="inline"
+            items={adminItems}
+            style={{
+              backgroundColor: "transparent",
+            }}
+          />
+        </Sider>
+      )}
       <Layout
       style={{
         backgroundColor:'var(--bg-dark-1, #252836)'
@@ -82,7 +91,8 @@ function CommonLayout() {
             background: colorBgContainer,
             textTransform: "capitalize",
             fontSize: '28px',
-            display: 'flex'
+            display: 'flex',
+            height: "fit-content"
           }} 
         >
           {
@@ -104,11 +114,34 @@ function CommonLayout() {
               })()}
              </>
             ) : (
-              <>
-                Jaegar Resto
-              </>
-            )
-          }
+              <div className="flex justify-between w-full h-full px-6 py-3">
+              <div>
+                <div 
+                  style={{
+                    color: 'var(--white-color)',
+                    fontSize: '28px',
+                    fontWeight: 600,
+                    lineHeight: "140%"
+                  }}
+                >
+                  Restaurant
+                </div>
+                <div 
+                  style={{
+                    fontSize: '16px',
+                    lineHeight: '140%',
+                    fontWeight: 400,
+                    color: 'var(--text-light)',
+                    height: 'fit-content',
+                    marginTop: '6px'
+                  }}
+                >{moment().format('dddd, Do MMM')}</div>
+              </div>
+              <div>
+                <Input prefix={<SearchOutlined />} size="large" placeholder="Search for food, coffee, etc.."/>
+              </div>
+            </div>
+        )}
         </Header>
         <Content style={{ margin: '0 16px' }}>
           <div style={{ padding: 24, minHeight: 360, background: colorBgContainer }}>
