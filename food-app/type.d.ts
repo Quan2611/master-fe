@@ -12,14 +12,20 @@ export interface IFood {
 
 export type INewFood = Omit<IFood, 'id'>;
 
-interface IGetFoodResponse {
+export interface IGetFoodResponse {
   data: IFood[];
   total: number;
 }
-interface IGetFoodRequest {
+export interface IGetFoodRequest {
   tag?: Tag;
   skip?: number;
   limit?: number;
+}
+
+export interface ICart {
+  foodData: IFood;
+  quantity: number;
+  note:string;
 }
 
 export interface IOrder {
@@ -34,11 +40,13 @@ export interface IOrder {
 
 export interface IOrderItem {
   id: number;
+  quantity: number;
   order_id: number;
   food_id: number;
   price: number;
   discount_amount: number;
   total: number;
+  note:string;
 }
 
 export interface ITable {
