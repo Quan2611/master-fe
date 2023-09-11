@@ -12,7 +12,7 @@ export interface IFood {
 
 export type INewFood = Omit<IFood, 'id'>;
 
-interface IGetFoodResp {
+interface IGetFoodResponse {
   data: IFood[];
   total: number;
 }
