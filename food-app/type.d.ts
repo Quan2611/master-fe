@@ -12,6 +12,16 @@ export interface IFood {
 
 export type INewFood = Omit<IFood, 'id'>;
 
+interface IGetFoodResp {
+  data: IFood[];
+  total: number;
+}
+interface IGetFoodRequest {
+  tag?: Tag;
+  skip?: number;
+  limit?: number;
+}
+
 export interface IOrder {
   id: number;
   total_price: number;
