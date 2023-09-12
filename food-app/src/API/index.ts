@@ -67,7 +67,7 @@ export const createNewFood = async (data: INewFood): Promise<IFood | null> => {
   }
 };
 
-export const getDetailInfoFoodById = async (id?: number): Promise<IFood[] | null> => {
+export const getDetailInfoFoodById = async (id: number): Promise<IFood | null> => {
   const payload: IRequest = {
     method: "GET",
     path: "food",
@@ -78,7 +78,7 @@ export const getDetailInfoFoodById = async (id?: number): Promise<IFood[] | null
 
   const resp = await Request.send(payload)
   if (resp.status === 200) {
-    return resp.data[0] as IFood[]
+    return resp.data[0] as IFood
   } else {
     return null
   }
